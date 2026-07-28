@@ -1,77 +1,83 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-
-const answers = [
-  "É uma relação entre dois conjuntos.",
-  "Cada valor de entrada leva a uma única saída.",
-];
+import { ArrowUpRight, BookOpen, CircleHelp, Sparkles } from "lucide-react";
 
 export function StudyNote() {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduceMotion ? 0 : 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-      className="relative mx-auto w-full max-w-[31rem]"
-      aria-label="Exemplo de uma conversa de estudo com a Sokra"
+      transition={{ duration: reduceMotion ? 0 : 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+      className="relative overflow-hidden bg-ink text-background"
+      aria-label="Exemplo de uma sessão de estudo com a Sokra"
     >
-      <div className="absolute -left-3 top-8 hidden h-[calc(100%-4rem)] w-px bg-primary/25 sm:block" />
-      <div className="border border-foreground/15 bg-paper px-6 py-7 shadow-[0_22px_60px_-45px_rgba(20,30,38,0.45)] sm:px-9 sm:py-9">
-        <div className="flex items-center justify-between border-b border-foreground/10 pb-4 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          <span>Caderno de raciocínio</span>
-          <span>01 / 03</span>
-        </div>
-
-        <div className="pt-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            Tema · Funções
-          </p>
-          <h2 className="mt-3 font-serif text-[clamp(1.75rem,4vw,2.35rem)] leading-tight tracking-[-0.025em]">
-            O que precisa ser verdade para que uma relação seja uma função?
-          </h2>
-
-          <div className="mt-8 border-l-2 border-primary/25 pl-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              O que você já sabe
-            </p>
-            <div className="mt-3 space-y-3">
-              {answers.map((answer, index) => (
-                <motion.p
-                  key={answer}
-                  initial={{ opacity: 0, x: reduceMotion ? 0 : -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.45, delay: 0.55 + index * 0.18 }}
-                  className="text-sm leading-6 text-foreground/78"
-                >
-                  {answer}
-                </motion.p>
-              ))}
+      <div className="grid min-h-[36rem] lg:grid-cols-[0.34fr_0.66fr]">
+        <aside className="flex flex-col justify-between border-b border-background/15 p-6 lg:border-b-0 lg:border-r lg:p-8">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-background/55">
+              <BookOpen className="size-4" />
+              Sessão de estudo
             </div>
+            <p className="mt-6 max-w-[15rem] text-sm leading-6 text-background/64">
+              Funções matemáticas · Fundamentos
+            </p>
           </div>
 
-          <div className="mt-8 bg-secondary/70 p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+          <div className="mt-12 grid grid-cols-3 gap-2 lg:grid-cols-1">
+            {["Contexto", "Raciocínio", "Síntese"].map((item, index) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 border-t border-background/15 pt-3 text-xs text-background/55"
+              >
+                <span className={index === 1 ? "text-marker" : "text-background/35"}>0{index + 1}</span>
+                <span className={index === 1 ? "text-background" : ""}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+        <div className="flex flex-col p-6 sm:p-8 lg:p-10 xl:p-12">
+          <div className="flex items-center justify-between text-xs text-background/48">
+            <span>Progresso 2 de 4</span>
+            <span className="flex items-center gap-2">
+              <span className="size-1.5 rounded-full bg-marker" />
+              Sokra está acompanhando
+            </span>
+          </div>
+
+          <div className="flex flex-1 flex-col justify-center py-12 lg:py-16">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-marker">
+              <CircleHelp className="size-4" />
               Próxima pergunta
-            </p>
-            <p className="mt-2 font-serif text-lg leading-snug">
-              E o que aconteceria se uma mesma entrada tivesse duas saídas?
-            </p>
+            </div>
+            <h2 className="mt-5 max-w-4xl text-balance text-[clamp(2.4rem,5.6vw,5.8rem)] font-medium leading-[0.94] tracking-[-0.065em]">
+              O que aconteceria se uma mesma entrada tivesse duas saídas?
+            </h2>
           </div>
 
-          <div className="mt-8 grid grid-cols-3 gap-2" aria-hidden="true">
-            <span className="h-1 bg-primary" />
-            <span className="h-1 bg-foreground/12" />
-            <span className="h-1 bg-foreground/12" />
+          <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
+            <div className="border border-background/18 bg-background/[0.055] p-5 sm:p-6">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-background/45">
+                <Sparkles className="size-4" />
+                Seu raciocínio até aqui
+              </div>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-background/78 sm:text-base">
+                Uma função precisa associar cada valor de entrada a uma única saída. Se houver duas, essa relação deixa de cumprir a regra.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="grid size-14 place-items-center rounded-full bg-marker text-ink transition-transform hover:-translate-y-0.5 sm:size-16"
+              aria-label="Continuar raciocínio"
+            >
+              <ArrowUpRight className="size-5" />
+            </button>
           </div>
         </div>
       </div>
-
-      <p className="mt-3 text-right text-xs italic text-muted-foreground">
-        Um passo de cada vez, sem respostas prontas.
-      </p>
     </motion.div>
   );
 }

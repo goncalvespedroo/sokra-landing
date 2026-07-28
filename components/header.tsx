@@ -8,17 +8,17 @@ import { BrandLogo } from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
-  { label: "Método", href: "#metodo" },
+  { label: "Por que Sokra", href: "#proposta" },
+  { label: "Como funciona", href: "#metodo" },
   { label: "Princípios", href: "#principios" },
-  { label: "Acesso", href: "#waitlist" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+    <header className="sticky top-0 z-50 border-b border-foreground/15 bg-background/92 backdrop-blur-xl">
+      <div className="mx-auto flex h-[4.5rem] max-w-[96rem] items-center justify-between px-5 sm:px-8 lg:px-10">
         <a
           href="#inicio"
           className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
@@ -26,12 +26,12 @@ export function Header() {
           <BrandLogo />
         </a>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Navegação principal">
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground"
+              className="text-sm font-medium tracking-[-0.01em] text-foreground/66 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground"
             >
               {item.label}
             </a>
@@ -39,15 +39,15 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden rounded-md sm:inline-flex">
-            <a href="#waitlist">Garantir acesso</a>
+          <Button asChild size="sm" className="hidden rounded-full px-5 sm:inline-flex">
+            <a href="#waitlist">Entrar na waitlist</a>
           </Button>
 
           <Button
             type="button"
             variant="ghost"
             size="icon"
-            className="rounded-md md:hidden"
+            className="rounded-full lg:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((current) => !current)}
@@ -63,23 +63,23 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="overflow-hidden border-t border-border bg-background md:hidden"
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="overflow-hidden border-t border-foreground/15 bg-background lg:hidden"
           >
-            <nav className="mx-auto grid max-w-6xl gap-1 px-5 py-4" aria-label="Navegação móvel">
+            <nav className="mx-auto grid max-w-[96rem] gap-1 px-5 py-5 sm:px-8" aria-label="Navegação móvel">
               {navigation.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  className="border-b border-foreground/10 px-1 py-4 text-lg font-medium tracking-[-0.025em]"
                 >
                   {item.label}
                 </a>
               ))}
-              <Button asChild className="mt-2 rounded-md sm:hidden">
+              <Button asChild className="mt-4 rounded-full sm:hidden">
                 <a href="#waitlist" onClick={() => setOpen(false)}>
-                  Garantir acesso
+                  Entrar na waitlist
                 </a>
               </Button>
             </nav>
