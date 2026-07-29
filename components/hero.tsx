@@ -112,16 +112,15 @@ export function Hero() {
             </div>
             <div>
               <h2 className="max-w-5xl text-balance text-[clamp(3rem,7vw,7.2rem)] font-medium leading-[0.91] tracking-[-0.07em]">
-                Um tutor que não rouba de você a parte mais importante: pensar.
+                Se alguém pensa por você, quem está aprendendo?
               </h2>
               <p className="mt-10 max-w-2xl text-lg leading-8 text-background/64 sm:text-xl sm:leading-9">
-                A Sokra não foi desenhada para encurtar qualquer caminho. Ela foi desenhada para tornar o caminho visível, ajudar você a reconhecer padrões e construir autonomia para resolver o próximo problema sozinho.
-              </p>
+                Sokra vem de socrático. Inspirada no método de Sócrates, ela não começa entregando respostas. Começa fazendo perguntas. Cada interação ajuda você a explicar o que entendeu, perceber contradições e construir o próximo passo do próprio raciocínio. Porque aprender não é apenas chegar à resposta certa, é compreender como chegar até ela.</p>
             </div>
           </div>
 
           <div className="mt-20 grid border-t border-background/20 md:grid-cols-3 md:divide-x md:divide-background/20">
-            {["Menos dependência", "Mais consciência", "Revisão com contexto"].map((item, index) => (
+            {["Menos dependência ", "Mais consciência", "Revisão com contexto"].map((item, index) => (
               <motion.div
                 key={item}
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
