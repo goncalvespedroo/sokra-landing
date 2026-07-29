@@ -47,6 +47,23 @@ const principles = [
   },
 ];
 
+const motivation = [
+  {
+    title: "Menos dependência",
+    text: "O Sokra não transforma toda dúvida em uma resposta pronta. Ela oferece perguntas, pistas e contrapontos na medida certa, para que você avance sem depender de uma ferramenta para resolver cada novo problema.",
+  },
+
+  {
+    title: "Mais consciência",
+    text: "Ao explicar, comparar e justificar suas ideias, você percebe não apenas que errou, mas onde o raciocínio começou a falhar. O erro deixa de ser um resultado final e passa a ser parte do aprendizado.",
+  },
+
+  {
+    title: "Revisão com contexto",
+    text: "O Sokra considera os assuntos em que você teve dificuldade, os caminhos que tentou e os padrões que aparecem nos seus erros. Assim, revisar deixa de ser apenas repetir conteúdo e passa a ser reconstruir o que ainda não ficou claro.",
+  }
+];
+
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
@@ -120,9 +137,9 @@ export function Hero() {
           </div>
 
           <div className="mt-20 grid border-t border-background/20 md:grid-cols-3 md:divide-x md:divide-background/20">
-            {["Menos dependência ", "Mais consciência", "Revisão com contexto"].map((item, index) => (
+            {motivation.map((item, index) => (
               <motion.div
-                key={item}
+                key={item.title}
                 initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
@@ -130,7 +147,8 @@ export function Hero() {
                 className="border-b border-background/20 py-7 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0"
               >
                 <span className="text-xs text-marker">0{index + 1}</span>
-                <p className="mt-10 text-2xl font-medium tracking-[-0.04em] sm:text-3xl">{item}</p>
+                <p className="mt-10 text-2xl font-medium tracking-[-0.04em] sm:text-3xl">{item.title}</p>
+                <p className="mt-5 max-w-md text-base leading-relaxed text-background/70">{item.text}</p>
               </motion.div>
             ))}
           </div>
