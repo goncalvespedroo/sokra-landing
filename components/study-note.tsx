@@ -251,7 +251,7 @@ export function StudyNote({ waitlistId = "waitlist" }: StudyNoteProps) {
               </p>
 
               <h2 className="mt-6 text-balance text-[clamp(2.8rem,7vw,7rem)] font-medium leading-[0.91] tracking-[-0.07em] text-background">
-                Uma resposta pronta termina o processo. <h2>A pergunta certa começa.</h2>
+                Uma resposta pronta termina o processo. <span className="block">A pergunta certa começa.</span>
               </h2>
 
               <p className="mx-auto mt-6 max-w-xl text-sm leading-6 text-background/65 sm:text-base">

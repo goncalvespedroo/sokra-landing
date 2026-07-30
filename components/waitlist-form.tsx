@@ -9,6 +9,10 @@ import { Input } from "@/components/ui/input";
 
 type FormStatus = "idle" | "loading" | "success";
 
+type WaitlistResponse = {
+  message?: string;
+};
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function WaitlistForm() {
@@ -19,6 +23,7 @@ export function WaitlistForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const normalizedEmail = email.trim().toLowerCase();
+    const honeypot = new FormData(event.currentTarget).get("website");
 
     if (!EMAIL_PATTERN.test(normalizedEmail)) {
       setError("Digite um e-mail válido.");
@@ -28,10 +33,34 @@ export function WaitlistForm() {
     setError("");
     setStatus("loading");
 
-    // Estado visual de demonstração. Substitua por uma Server Action ou rota de API.
-    await new Promise((resolve) => setTimeout(resolve, 1100));
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          website: typeof honeypot === "string" ? honeypot : "",
+        }),
+      });
 
-    setStatus("success");
+      const data = (await response.json().catch(() => ({}))) as WaitlistResponse;
+
+      if (!response.ok) {
+        throw new Error(data.message || "Não foi possível concluir sua inscrição.");
+      }
+
+      setEmail(normalizedEmail);
+      setStatus("success");
+    } catch (submissionError) {
+      setStatus("idle");
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Não foi possível concluir sua inscrição. Tente novamente.",
+      );
+    }
   }
 
   function resetForm() {
@@ -81,6 +110,17 @@ export function WaitlistForm() {
             onSubmit={handleSubmit}
             noValidate
           >
+            <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="website">Não preencha este campo</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div className="flex flex-col gap-2.5 sm:flex-row">
               <div className="min-w-0 flex-1">
                 <label htmlFor="email" className="sr-only">
