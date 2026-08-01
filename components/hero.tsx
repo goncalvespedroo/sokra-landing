@@ -129,25 +129,25 @@ export function Hero() {
         <div className="mx-auto max-w-[96rem] px-5 sm:px-8 lg:px-10">
           <div className="grid min-h-[38rem] border-b border-background/15 lg:grid-cols-[0.42fr_0.58fr]">
             {/* Coluna esquerda */}
-            <div className="flex flex-col py-16 lg:pr-14">
+            <div className="flex flex-col pt-16 pb-0 lg:py-16 lg:pr-14">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marker">
                 Por que Sokra
               </p>
 
-              <div className="flex flex-1 items-center justify-center py-12">
+              <div className="flex flex-1 items-center justify-center pt-10 pb-0 lg:py-12">
                 <Image
                   src="/logoSokra.png"
                   alt="Ilustração do Sokra"
                   width={900}
                   height={900}
                   priority
-                  className="h-auto w-full max-w-[28rem] object-contain"
+                  className="-mb-4 h-auto w-full max-w-[28rem] object-contain lg:mb-0"
                 />
               </div>
             </div>
 
             {/* Coluna direita */}
-            <div className="flex flex-col justify-center py-16 lg:pl-16">
+            <div className="flex flex-col justify-center pt-4 pb-16 lg:py-16 lg:pl-16">
               <h2 className="max-w-4xl text-balance text-[clamp(3.5rem,6vw,7rem)] font-medium leading-[0.92] tracking-[-0.07em]">
                 Se alguém pensa por você, quem está aprendendo?
               </h2>
